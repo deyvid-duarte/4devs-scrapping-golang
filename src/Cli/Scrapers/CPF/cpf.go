@@ -1,4 +1,4 @@
-package CPF
+package cpf
 
 import (
 	"fmt"

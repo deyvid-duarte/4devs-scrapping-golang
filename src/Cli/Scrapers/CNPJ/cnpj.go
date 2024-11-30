@@ -1,4 +1,4 @@
-package CNPJ
+package cnpj
 
 import (
 	"io"

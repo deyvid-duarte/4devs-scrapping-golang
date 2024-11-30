@@ -1,7 +1,7 @@
 package cli
 
 import (
-	clicommands "4devs-scrapping/src/Cli/Commands"
+	"4devs-scrapping/src/cli/commands"
 	"fmt"
 	"os"
 
@@ -13,11 +13,11 @@ func Start() {
 	cliApp.Name = "4Devs Cli Scrapper"
   	cliApp.Usage = "Scraping the most usaged features from 4Devs"
 	cliApp.Commands = []cli.Command{
-		clicommands.CreateGeneratorCPFCommand(),
-		clicommands.CreateGeneratorCNPJCommand(),
-		clicommands.CreateGeneratorPersonCommand(),
-		clicommands.CreateValidatorCPFCommand(),
-		clicommands.CreateValidatorCNPJCommand(),
+		commands.CreateGeneratorCPFCommand(),
+		commands.CreateGeneratorCNPJCommand(),
+		commands.CreateGeneratorPersonCommand(),
+		commands.CreateValidatorCPFCommand(),
+		commands.CreateValidatorCNPJCommand(),
 	}
 	cliApp.ExitErrHandler = func(context *cli.Context, err error) {
 		if err != nil {

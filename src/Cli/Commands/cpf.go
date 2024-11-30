@@ -1,7 +1,7 @@
-package clicommands
+package commands
 
 import (
-	"4devs-scrapping/src/Cli/Scrapers/CPF"
+	"4devs-scrapping/src/cli/scrapers/cpf"
 	"errors"
 	"fmt"
 
@@ -14,7 +14,7 @@ func CreateGeneratorCPFCommand() cli.Command {
 		Aliases: []string{"-gcpf"},
 		Usage: "Generate a valid CPF",
 		Action: func (ctx *cli.Context) error {
-			fmt.Println(CPF.Generate(true, ""))
+			fmt.Println(cpf.Generate(true, ""))
 			return nil
 		},
 	}
@@ -26,11 +26,11 @@ func CreateValidatorCPFCommand() cli.Command {
 		Aliases: []string{"-vcpf"},
 		Usage: "Validate CPF",
 		Action: func (ctx *cli.Context) error {
-			cpf := ctx.Args().First()
-			if cpf == "" {
+			cpfArg := ctx.Args().First()
+			if cpfArg == "" {
 				return errors.New("o cpf deve ser informado")
 			}
-			fmt.Println(CPF.Validator(cpf))
+			fmt.Println(cpf.Validator(cpfArg))
 			return nil
 		},
 	}

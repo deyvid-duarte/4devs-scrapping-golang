@@ -1,7 +1,7 @@
-package clicommands
+package commands
 
 import (
-	"4devs-scrapping/src/Cli/Scrapers/CNPJ"
+	"4devs-scrapping/src/cli/scrapers/cnpj"
 	"errors"
 	"fmt"
 
@@ -14,7 +14,7 @@ func CreateGeneratorCNPJCommand() cli.Command {
 		Aliases: []string{"-gcnpj"},
 		Usage: "Generate a valid CNPJ",
 		Action: func (ctx *cli.Context) error {
-			fmt.Println(CNPJ.Generate(false))
+			fmt.Println(cnpj.Generate(false))
 			return nil
 		},
 	}
@@ -26,11 +26,11 @@ func CreateValidatorCNPJCommand() cli.Command {
 		Aliases: []string{"-vcnpj"},
 		Usage: "Validate CNPJ",
 		Action: func (ctx *cli.Context) error {
-			cnpj := ctx.Args().First()
-			if cnpj == "" {
+			cnpjArg := ctx.Args().First()
+			if cnpjArg == "" {
 				return errors.New("o cnpj deve ser informado")
 			}
-			fmt.Println(CNPJ.Validator(cnpj))
+			fmt.Println(cnpj.Validator(cnpjArg))
 			return nil
 		},
 	}
