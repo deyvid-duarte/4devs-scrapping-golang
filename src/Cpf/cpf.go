@@ -5,6 +5,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 func Generate(withMask bool, ufOrigin string) string {
@@ -28,4 +29,21 @@ func Generate(withMask bool, ufOrigin string) string {
 
 	body, _ := io.ReadAll(resp.Body)
 	return string(body)
+}
+
+func Validator(cpf string) string {
+	data := url.Values{}
+	data.Set("acao", "validar_cpf")
+	data.Set("txt_cpf", cpf)
+
+	response, err := http.PostForm("https://www.4devs.com.br/ferramentas_online.php", data)
+	if err != nil {
+		panic("Erro ao validar o CPF: " + err.Error())
+	}
+	defer response.Body.Close()
+
+	body, _ := io.ReadAll(response.Body)
+	bodyString := string(body)
+	cpfStatus := strings.Split(bodyString, " - ")[1]
+	return strings.TrimSpace(cpfStatus)
 }

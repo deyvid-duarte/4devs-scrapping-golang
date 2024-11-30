@@ -1,1 +1,3 @@
-# Projeto construido com o intuito de conhecer a linguagem GO
+# 4devs Scraping
+
+A simple CLI to scraping the most usaged features from 4Devs
